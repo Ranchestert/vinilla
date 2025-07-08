@@ -13,7 +13,7 @@ function App() {
       "discount": 0.1,
       "quantity": 12,
       "fontColor": "rgb(60, 60, 60)"
-    }}/>
+    }} state='active'/>
     </>
   )
 }

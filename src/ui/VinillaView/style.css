@@ -1,0 +1,43 @@
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.info *{
+    margin: 0;
+    padding: 0;
+}
+
+.main-info{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.title{
+    font-size: 18px;
+    font-weight: 600;
+}
+.artist{
+    color: rgb(75, 75, 75);
+}
+
+.discount{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.discount .oldPrice{
+    color: gray;
+    text-decoration: line-through;
+    font-size: 16px;
+    font-weight: 300;
+}
+.discount .newPrice{
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(25, 228, 25);
+}
+.no-discount{
+    font-weight: 500;
+    font-size: 16px;
+}
