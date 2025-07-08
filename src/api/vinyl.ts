@@ -17,7 +17,7 @@ const vinylsArraySchema = z.array(vinylSchema);
 export type VinylArray = z.infer<typeof vinylsArraySchema>;
 
 export async function GetVinylsArray(): Promise<VinylArray> {
-  return fetch(`/api/vinillas`)
+  return fetch(`/api/vinyls`)
     .then(ProcessServerData)
     .then((response) => response.json())
     .then((data) => vinylsArraySchema.parse(data));
