@@ -1,31 +1,31 @@
 import type { FC } from "react";
-import type { Vinilla } from "../../api/vinilla";
+import type { Vinyl } from "../../api/vinyl";
 import "./style.css";
 import { Button } from "../Button";
 
-interface IVinillaViewProps {
-  vinilla: Vinilla;
+interface IVinylViewProps {
+  vinyl: Vinyl;
   state?: "active" | "inactive";
-  handleCart: (vinilla: Vinilla, index: number) => void;
+  handleCart: (vinilla: Vinyl, index: number) => void;
   index: number;
 }
 
-export const VinillaView: FC<IVinillaViewProps> = ({
-  vinilla,
+export const VinylView: FC<IVinylViewProps> = ({
+  vinyl,
   state = "inactive",
   handleCart,
   index,
 }) => {
   const handleClick = () => {
     state = state === "inactive" ? "active" : "inactive";
-    handleCart(vinilla, index);
+    handleCart(vinyl, index);
   };
 
   switch (state) {
     case "inactive":
       return (
-        <div className="vinilla">
-          <div className="closed-vinilla">
+        <div className="vinyl">
+          <div className="closed-vinyl">
             <svg height="100" width="100" viewBox="0 0 100 100">
               <defs>
                 <path
@@ -104,26 +104,26 @@ export const VinillaView: FC<IVinillaViewProps> = ({
                 d="M25,50
                         a25,25 0 1,1 50,0
                         a25,25 0 1,1 -50,0"
-                fill={vinilla.color}
+                fill={vinyl.color}
               />
-              <text fill={vinilla.fontColor} fontSize="12">
-                <textPath href="#circle">{vinilla.title}</textPath>
+              <text fill={vinyl.fontColor} fontSize="12">
+                <textPath href="#circle">{vinyl.title}</textPath>
               </text>
             </svg>
           </div>
           <div className="info">
             <div className="main-info">
-              <p className="title">{vinilla.title}</p>
-              <p className="artist">{vinilla.artist}</p>
+              <p className="title">{vinyl.title}</p>
+              <p className="artist">{vinyl.artist}</p>
             </div>
-            <p className="qunatity">{vinilla.quantity} copies left</p>
-            {vinilla.discount === 0 ? (
-              <p className="no-discount">{vinilla.price}&nbsp;&#x20ac;</p>
+            <p className="qunatity">{vinyl.quantity} copies left</p>
+            {vinyl.discount === 0 ? (
+              <p className="no-discount">{vinyl.price}&nbsp;&#x20ac;</p>
             ) : (
               <div className="discount">
-                <p className="oldPrice">{vinilla.price}&nbsp;&#x20ac;</p>
+                <p className="oldPrice">{vinyl.price}&nbsp;&#x20ac;</p>
                 <p className="newPrice">
-                  {Math.round(vinilla.price * (1 - vinilla.discount) * 100) /
+                  {Math.round(vinyl.price * (1 - vinyl.discount) * 100) /
                     100}
                   &nbsp;&#x20ac;
                 </p>
@@ -137,8 +137,8 @@ export const VinillaView: FC<IVinillaViewProps> = ({
       );
     case "active":
       return (
-        <div className="vinilla">
-          <div className="openedVinilla">
+        <div className="vinyl">
+          <div className="openedVinyl">
             <svg height="100" width="100" viewBox="0 0 100 100">
               <defs>
                 <path
@@ -175,26 +175,26 @@ export const VinillaView: FC<IVinillaViewProps> = ({
                 d="M25,50
                         a25,25 0 1,1 50,0
                         a25,25 0 1,1 -50,0"
-                fill={vinilla.color}
+                fill={vinyl.color}
               />
-              <text fill={vinilla.fontColor} fontSize="12">
-                <textPath href="#circle">{vinilla.title}</textPath>
+              <text fill={vinyl.fontColor} fontSize="12">
+                <textPath href="#circle">{vinyl.title}</textPath>
               </text>
             </svg>
           </div>
           <div className="info">
             <div className="main-info">
-              <p className="title">{vinilla.title}</p>
-              <p className="artist">{vinilla.artist}</p>
+              <p className="title">{vinyl.title}</p>
+              <p className="artist">{vinyl.artist}</p>
             </div>
-            <p className="qunatity">{vinilla.quantity} copies left</p>
-            {vinilla.discount === 0 ? (
-              <p className="no-discount">{vinilla.price}&nbsp;&#x20ac;</p>
+            <p className="qunatity">{vinyl.quantity} copies left</p>
+            {vinyl.discount === 0 ? (
+              <p className="no-discount">{vinyl.price}&nbsp;&#x20ac;</p>
             ) : (
               <div className="discount">
-                <p className="oldPrice">{vinilla.price}&nbsp;&#x20ac;</p>
+                <p className="oldPrice">{vinyl.price}&nbsp;&#x20ac;</p>
                 <p className="newPrice">
-                  {Math.round(vinilla.price * (1 - vinilla.discount) * 100) /
+                  {Math.round(vinyl.price * (1 - vinyl.discount) * 100) /
                     100}
                   &nbsp;&#x20ac;
                 </p>

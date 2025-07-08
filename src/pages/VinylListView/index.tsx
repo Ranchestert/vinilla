@@ -1,15 +1,15 @@
 import type { FC } from "react";
-import type { Vinilla, VinillaArray } from "../../api/vinilla";
-import { VinillaView } from "../../ui/VinillaView";
+import type { Vinyl, VinylArray } from "../../api/vinyl";
+import { VinylView } from "../../ui/VinylView";
 import "./style.css";
 
-interface IVinillaListViewProps {
-  list: VinillaArray;
-  handleCart: (vinilla: Vinilla, index: number) => void;
+interface IVinylListViewProps {
+  list: VinylArray;
+  handleCart: (vinyl: Vinyl, index: number) => void;
   stateList: ("active" | "inactive")[];
 }
 
-export const VinillaListView: FC<IVinillaListViewProps> = ({
+export const VinylListView: FC<IVinylListViewProps> = ({
   list,
   handleCart,
   stateList,
@@ -18,8 +18,8 @@ export const VinillaListView: FC<IVinillaListViewProps> = ({
     <ul className="array">
       {list.map((item, index) => (
         <li key={item.id}>
-          <VinillaView
-            vinilla={item}
+          <VinylView
+            vinyl={item}
             handleCart={handleCart}
             state={stateList[index]}
             index={index}

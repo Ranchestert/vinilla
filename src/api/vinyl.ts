@@ -1,7 +1,7 @@
 import z from "zod";
 import { ProcessServerData } from "./ProcessData";
 
-const vinillaSchema = z.object({
+const vinylSchema = z.object({
   id: z.string(),
   title: z.string(),
   artist: z.string(),
@@ -11,14 +11,14 @@ const vinillaSchema = z.object({
   quantity: z.number(),
   fontColor: z.string(),
 });
-export type Vinilla = z.infer<typeof vinillaSchema>;
+export type Vinyl = z.infer<typeof vinylSchema>;
 
-const vinillasArraySchema = z.array(vinillaSchema);
-export type VinillaArray = z.infer<typeof vinillasArraySchema>;
+const vinylsArraySchema = z.array(vinylSchema);
+export type VinylArray = z.infer<typeof vinylsArraySchema>;
 
-export async function GetVinillasArray(): Promise<VinillaArray> {
+export async function GetVinylsArray(): Promise<VinylArray> {
   return fetch(`/api/vinillas`)
     .then(ProcessServerData)
     .then((response) => response.json())
-    .then((data) => vinillasArraySchema.parse(data));
+    .then((data) => vinylsArraySchema.parse(data));
 }

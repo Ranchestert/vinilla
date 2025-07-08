@@ -1,10 +1,10 @@
 import { useState, type FC } from "react";
-import type { VinillaArray } from "../../api/vinilla";
+import type { VinylArray } from "../../api/vinyl";
 import { Button } from "../Button";
 import "./style.css";
 
 interface ICartProps {
-  list: VinillaArray;
+  list: VinylArray;
 }
 
 export const Cart: FC<ICartProps> = ({ list }) => {

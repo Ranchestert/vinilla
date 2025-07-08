@@ -1,4 +1,4 @@
-.vinilla{
+.vinyl{
     width: 100px;
     height: 330px;
     align-items: center;
@@ -53,6 +53,6 @@
     font-size: 16px;
 }
 
-.vinilla > button {
+.vinyl > button {
     margin-top: auto;
 }

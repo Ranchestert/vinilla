@@ -1,36 +1,36 @@
 import { useEffect, useState, type ReactElement } from "react";
 import "./style.css";
 import { useQuery } from "@tanstack/react-query";
-import { GetVinillasArray } from "../../api/vinilla";
+import { GetVinylsArray } from "../../api/vinyl.ts";
 import { queryClient } from "../../api/queryClient";
-import { VinillaListView } from "../VinillaListView";
+import { VinylListView } from "../VinylListView";
 import { Button } from "../../ui/Button";
-import type { Vinilla, VinillaArray } from "../../api/vinilla";
+import type { Vinyl, VinylArray } from "../../api/vinyl.ts";
 import { Cart } from "../../ui/Cart";
 
-export const VinillasPage = (): ReactElement => {
+export const VinylsPage = (): ReactElement => {
   const listQuery = useQuery(
     {
-      queryFn: GetVinillasArray,
-      queryKey: ["vinillas"],
+      queryFn: GetVinylsArray,
+      queryKey: ["vinyls"],
       retry: false,
     },
     queryClient
   );
 
-  const [cartList, setCartList] = useState<VinillaArray>([]);
+  const [cartList, setCartList] = useState<VinylArray>([]);
   const [stateList, setStateList] = useState<("active" | "inactive")[]>([]);
 
-  const handleCart = (vinilla: Vinilla, index: number): void => {
+  const handleCart = (vinyl: Vinyl, index: number): void => {
     setStateList(
       stateList.map((item, ind) =>
         ind === index ? (item === "active" ? "inactive" : "active") : item
       )
     );
-    if (cartList.filter(({ id }) => id === vinilla.id).length === 0) {
-      setCartList([...cartList, vinilla]);
+    if (cartList.filter(({ id }) => id === vinyl.id).length === 0) {
+      setCartList([...cartList, vinyl]);
     } else {
-      setCartList(cartList.filter((item) => item !== vinilla));
+      setCartList(cartList.filter((item) => item !== vinyl));
     }
   };
   useEffect(() => {
@@ -46,7 +46,7 @@ export const VinillasPage = (): ReactElement => {
           Please wait until list will be loaded
         </span>
       ) : listQuery.status === "success" ? (
-        <VinillaListView
+        <VinylListView
           list={listQuery.data}
           handleCart={handleCart}
           stateList={stateList}
@@ -57,7 +57,7 @@ export const VinillasPage = (): ReactElement => {
           <Button
             kind="secondary"
             onClick={() => {
-              queryClient.invalidateQueries({ queryKey: ["vinillas"] });
+              queryClient.invalidateQueries({ queryKey: ["vinyls"] });
             }}
           >
             Try again

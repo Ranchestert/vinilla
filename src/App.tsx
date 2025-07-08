@@ -1,10 +1,10 @@
 import './App.css'
-import { VinillasPage } from './pages/VinillasPage'
+import { VinylsPage } from './pages/VinylsPage'
 
 function App() {
   return (
     <>
-      <VinillasPage />
+      <VinylsPage />
     </>
   )
 }
