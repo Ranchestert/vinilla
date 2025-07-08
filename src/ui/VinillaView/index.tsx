@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import type { Vinilla } from "../../api/vinilla";
 import "./style.css";
+import { Button } from "../Button";
 
 interface IVinillaViewProps {
   vinilla: Vinilla;
@@ -168,6 +169,7 @@ export const VinillaView: FC<IVinillaViewProps> = ({
                 </p>
               </div>
             )}
+            <Button kind="secondary">Add to the cart</Button>
           </div>
         </div>
       );

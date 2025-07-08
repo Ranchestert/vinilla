@@ -1,8 +1,10 @@
-import type { FC, HTMLAttributes, ReactElement } from "react";
+import type { FC, HTMLAttributes } from "react";
+import "./style.css"
+import type React from "react";
 
 interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
-    kind: "secondary"|"primary",
-    children?: ReactElement
+    kind?: "secondary"|"primary",
+    children?: React.ReactNode
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -10,5 +12,5 @@ export const Button: FC<IButtonProps> = ({
     children,
     ...rest
 }) => {
-    return <button {...rest} className={kind}>{children}</button>
+    return <button {...rest} className={kind+" button"}>{children}</button>
 }
