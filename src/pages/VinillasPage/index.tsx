@@ -6,6 +6,7 @@ import { queryClient } from "../../api/queryClient";
 import { VinillaListView } from "../VinillaListView";
 import { Button } from "../../ui/Button";
 import type { Vinilla, VinillaArray } from "../../api/vinilla";
+import { Cart } from "../../ui/Cart";
 
 export const VinillasPage = (): ReactElement => {
   const listQuery = useQuery(
@@ -63,6 +64,8 @@ export const VinillasPage = (): ReactElement => {
           </Button>
         </>
       )}
+
+      <Cart list={cartList} />
     </>
   );
 };

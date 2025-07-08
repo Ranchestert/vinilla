@@ -1,0 +1,30 @@
+.nothing{
+    color: rgb(81, 81, 81);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.cart{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: fixed;
+    bottom: 0;
+    min-height: 20px;
+    width: 100%;
+    background-color: white;
+    border-top: 2px solid lightgray;
+    justify-content: center;
+    padding: 10px 20px;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    min-height: 100px;
+}
+
+.open-close{
+    cursor: pointer;
+}
