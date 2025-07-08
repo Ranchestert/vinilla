@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import "./style.css";
 import { useQuery } from "@tanstack/react-query";
 import { GetVinillasArray } from "../../api/vinilla";
@@ -11,19 +11,32 @@ export const VinillasPage = (): ReactElement => {
   const listQuery = useQuery(
     {
       queryFn: GetVinillasArray,
-      queryKey: ["get", "vinillas"],
-      retry: false
+      queryKey: ["vinillas"],
+      retry: false,
     },
     queryClient
   );
 
   const [cartList, setCartList] = useState<VinillaArray>([]);
+  const [stateList, setStateList] = useState<("active" | "inactive")[]>([]);
 
-  const handleCart = (vinilla: Vinilla): void => {
-    if(cartList.filter(({id})=>id===vinilla.id).length === 0){
-        setCartList([...cartList, vinilla])
+  const handleCart = (vinilla: Vinilla, index: number): void => {
+    setStateList(
+      stateList.map((item, ind) =>
+        ind === index ? (item === "active" ? "inactive" : "active") : item
+      )
+    );
+    if (cartList.filter(({ id }) => id === vinilla.id).length === 0) {
+      setCartList([...cartList, vinilla]);
+    } else {
+      setCartList(cartList.filter((item) => item !== vinilla));
     }
-  }
+  };
+  useEffect(() => {
+    if (listQuery.status === "success" && stateList.length === 0) {
+      setStateList(Array(listQuery.data.length).fill("inactive"));
+    }
+  }, [listQuery.status, listQuery.data, stateList.length]);
 
   return (
     <>
@@ -31,18 +44,24 @@ export const VinillasPage = (): ReactElement => {
         <span className="list-loading">
           Please wait until list will be loaded
         </span>
+      ) : listQuery.status === "success" ? (
+        <VinillaListView
+          list={listQuery.data}
+          handleCart={handleCart}
+          stateList={stateList}
+        />
       ) : (
-        listQuery.status === "success" ? (
-            <VinillaListView list={listQuery.data} handleCart={handleCart}/>
-        ) : (
-            <>
-                <span className="error">Error occurred. Please try again</span>
-                {console.log(listQuery.error.message)}
-                <Button kind="secondary" onClick={()=>{
-                    queryClient.invalidateQueries({queryKey: ["get","vinillas"]})
-                }}>Try again</Button>
-            </>
-        )
+        <>
+          <span className="error">Error occurred. Please try again</span>
+          <Button
+            kind="secondary"
+            onClick={() => {
+              queryClient.invalidateQueries({ queryKey: ["vinillas"] });
+            }}
+          >
+            Try again
+          </Button>
+        </>
       )}
     </>
   );

@@ -5,13 +5,14 @@ import "./style.css"
 
 interface IVinillaListViewProps{
     list: VinillaArray,
-    handleCart: (vinilla: Vinilla) => void
+    handleCart: (vinilla: Vinilla, index:number) => void,
+    stateList: ("active"|"inactive")[]
 }
 
-export const VinillaListView: FC<IVinillaListViewProps> = ({list, handleCart}) => {
+export const VinillaListView: FC<IVinillaListViewProps> = ({list, handleCart, stateList}) => {
     return (
         <ul className="array">
-            {list.map((item)=>(<li key={item.id}><VinillaView vinilla={item} handleCart={handleCart}/></li>))}
+            {list.map((item,index)=>(<li key={item.id}><VinillaView vinilla={item} handleCart={handleCart} state={stateList[index]} index={index}/></li>))}
         </ul>
     )
 }
