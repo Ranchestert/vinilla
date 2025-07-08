@@ -6,12 +6,19 @@ import { Button } from "../Button";
 interface IVinillaViewProps {
   vinilla: Vinilla;
   state?: "active" | "inactive";
+  handleCart: (vinilla: Vinilla) => void
 }
 
 export const VinillaView: FC<IVinillaViewProps> = ({
   vinilla,
   state = "inactive",
+  handleCart
 }) => {
+    const handleClick = () => {
+        state = (state === "inactive" ? "active" : "inactive");
+        handleCart(vinilla);
+    }
+
   switch (state) {
     case "inactive":
       return (
@@ -121,6 +128,7 @@ export const VinillaView: FC<IVinillaViewProps> = ({
               </div>
             )}
           </div>
+          <Button kind="secondary" onClick={handleClick}>Add to the cart</Button>
         </div>
       );
     case "active":
@@ -169,7 +177,7 @@ export const VinillaView: FC<IVinillaViewProps> = ({
                 </p>
               </div>
             )}
-            <Button kind="secondary">Add to the cart</Button>
+            <Button kind="secondary" onClick={handleClick}>Remove from the cart</Button>
           </div>
         </div>
       );

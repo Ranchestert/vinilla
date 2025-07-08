@@ -1,7 +1,18 @@
+.vinilla{
+    width: 100px;
+    height: 300px;
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
 .info{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    overflow: hidden;
 }
 .info *{
     margin: 0;
@@ -40,4 +51,8 @@
 .no-discount{
     font-weight: 500;
     font-size: 16px;
+}
+
+.vinilla > button {
+    margin-top: auto;
 }
